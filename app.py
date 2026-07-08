@@ -10,7 +10,7 @@ def index():
         name="Orbis",
         tagline="Motion That Makes Brands Unforgettable",
         subtitle="Your product's story — told in one powerful minute",
-        spots_left="3 spots left in July",
+        spots_left="Currently online",
         projects=[
             {
                 "title": "Stripe",
