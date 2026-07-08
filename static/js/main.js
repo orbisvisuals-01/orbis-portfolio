@@ -1,45 +1,48 @@
-// Animated stat counters
-function animateCounter(el) {
-  const target = parseInt(el.dataset.target, 10);
-  const suffix = el.dataset.suffix || "+";
-  const duration = 2000;
-  const start = performance.now();
+const portfolioCards = document.querySelectorAll(".project-card");
 
-  function update(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const current = Math.floor(eased * target);
-    el.textContent = current + suffix;
-    if (progress < 1) requestAnimationFrame(update);
-  }
+if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  window.addEventListener("mousemove", (event) => {
+    portfolioCards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const isInside = x >= 0 && x <= rect.width && y >= 0 && y <= rect.height;
 
-  requestAnimationFrame(update);
+      if (!isInside) {
+        card.style.setProperty("--tilt-x", "0deg");
+        card.style.setProperty("--tilt-y", "0deg");
+        return;
+      }
+
+      const xPercent = (x / rect.width) * 100;
+      const yPercent = (y / rect.height) * 100;
+      const rotateY = ((x / rect.width) - 0.5) * 5;
+      const rotateX = ((0.5 - (y / rect.height)) * 5);
+
+      card.style.setProperty("--mouse-x", `${xPercent}%`);
+      card.style.setProperty("--mouse-y", `${yPercent}%`);
+      card.style.setProperty("--tilt-x", `${rotateX.toFixed(2)}deg`);
+      card.style.setProperty("--tilt-y", `${rotateY.toFixed(2)}deg`);
+    });
+  });
+
+  portfolioCards.forEach((card) => {
+    card.addEventListener("mouseleave", () => {
+      card.style.setProperty("--tilt-x", "0deg");
+      card.style.setProperty("--tilt-y", "0deg");
+    });
+  });
 }
 
-const statsObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        statsObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.5 }
-);
-
-document.querySelectorAll(".stat-number").forEach((el) => {
-  statsObserver.observe(el);
-});
-
-// Smooth scroll offset for fixed nav
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", (e) => {
+  anchor.addEventListener("click", (event) => {
     const id = anchor.getAttribute("href");
     if (id === "#") return;
+
     const target = document.querySelector(id);
     if (!target) return;
-    e.preventDefault();
+
+    event.preventDefault();
     target.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });

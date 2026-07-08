@@ -37,6 +37,7 @@
         <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="{{ name }} logo" width="64" height="64">
       </div>
       <div class="hero-content">
+        <span class="hero-eyebrow">Motion systems / launch visuals</span>
         <h1 class="hero-title">{{ tagline }}</h1>
         <p class="hero-subtitle">{{ subtitle }}</p>
         <div class="hero-ctas">
@@ -49,6 +50,7 @@
       </div>
       <div class="hero-feature">
         <div class="feature-card">
+          <div class="feature-frame-label">SHOWREEL / 01</div>
           <iframe
             class="intro-video"
             src="https://www.youtube.com/embed/s82W9mpqdN8?autoplay=1&mute=1&loop=1&playlist=s82W9mpqdN8&controls=0&modestbranding=1&playsinline=1&rel=0"
@@ -75,11 +77,13 @@
       <div class="section-header">
         <span class="section-tag">Portfolio</span>
         <h2>Our latest projects</h2>
-        <p class="section-sub">some case studies</p>
+        <p class="section-sub">selected motion systems</p>
       </div>
       <div class="project-grid">
         {% for project in projects %}
-        <article class="project-card">
+        <article class="project-card" style="--project-accent: {{ project.accent }}">
+          <div class="project-glow"></div>
+          <span class="project-number">0{{ loop.index }}</span>
           <div class="project-thumb">
             <iframe
               src="https://www.youtube.com/embed/{{ project.youtube_id }}?rel=0&modestbranding=1&playsinline=1"
@@ -88,29 +92,23 @@
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen
             ></iframe>
+            <div class="project-media-shade"></div>
+            <div class="project-play-chip">
+              <span>View</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
           </div>
           <div class="project-info">
-            <h3>{{ project.title }}</h3>
+            <div>
+              <span class="project-kicker">{{ project.category }}</span>
+              <h3>{{ project.title }}</h3>
+            </div>
             <p>{{ project.description }}</p>
           </div>
         </article>
         {% endfor %}
-      </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats">
-      <div class="stat">
-        <h3 class="stat-number" data-target="{{ stats.projects }}">0</h3>
-        <p>Projects Completed</p>
-      </div>
-      <div class="stat">
-        <h3 class="stat-number" data-target="{{ stats.clients }}">0</h3>
-        <p>Satisfied Clients</p>
-      </div>
-      <div class="stat">
-        <h3 class="stat-number" data-target="{{ stats.views }}" data-suffix="M">0</h3>
-        <p>Views</p>
       </div>
     </section>
 
@@ -133,6 +131,39 @@
 
     <!-- Contact -->
     <section id="contact" class="contact">
+      <div class="contact-shell">
+        <span class="section-tag">Request a Project</span>
+        <h2>Shoot me a DM, let's discuss your next project</h2>
+        <p class="contact-sub">Clean motion, sharp storytelling, and a simple path from idea to launch.</p>
+
+        <div class="contact-grid">
+          <a class="contact-card" href="https://x.com/Orbis_Studio" target="_blank" rel="noopener noreferrer" aria-label="Open Orbis Studio on X">
+            <span class="contact-icon contact-icon-x">X</span>
+            <span class="contact-card-label">X / Twitter</span>
+            <strong>@Orbis_Studio</strong>
+          </a>
+          <a class="contact-card" href="https://www.instagram.com/orbis.studio1/" target="_blank" rel="noopener noreferrer" aria-label="Open Orbis Studio on Instagram">
+            <span class="contact-icon contact-icon-instagram">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.8"/>
+                <circle cx="12" cy="12" r="3.7" stroke="currentColor" stroke-width="1.8"/>
+                <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/>
+              </svg>
+            </span>
+            <span class="contact-card-label">Instagram</span>
+            <strong>@orbis.studio1</strong>
+          </a>
+        </div>
+
+        <a class="schedule-panel" href="https://calendly.com/orbisvisuals/30min" target="_blank" rel="noopener noreferrer">
+          <span>Schedule a Call</span>
+          <span class="schedule-arrow">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
       <span class="section-tag">Request a Project</span>
       <h2>Book a call</h2>
       <p class="contact-sub">Let's talk scope, timeline, and budget — no fluff, just clarity</p>

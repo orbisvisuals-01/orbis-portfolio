@@ -11,26 +11,27 @@ def index():
         tagline="Motion That Makes Brands Unforgettable",
         subtitle="Your product's story — told in one powerful minute",
         spots_left="3 spots left in July",
-        stats={
-            "projects": 40,
-            "clients": 35,
-            "views": 12,
-        },
         projects=[
             {
                 "title": "Stripe",
                 "description": "Product motion concept",
                 "youtube_id": "s82W9mpqdN8",
+                "category": "Product launch",
+                "accent": "#7c3cff",
             },
             {
                 "title": "TaskFlow",
                 "description": "SaaS workflow animation",
                 "youtube_id": "9HjeLE5JYGc",
+                "category": "SaaS motion",
+                "accent": "#39d98a",
             },
             {
                 "title": "Spotify",
                 "description": "Brand motion concept",
                 "youtube_id": "5kyONWP88yc",
+                "category": "Brand concept",
+                "accent": "#1ed760",
             },
         ],
         faqs=[
