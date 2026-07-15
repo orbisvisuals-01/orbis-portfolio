@@ -22,16 +22,16 @@ def index():
             {
                 "title": "TaskFlow",
                 "description": "SaaS workflow animation",
-                "youtube_id": "9HjeLE5JYGc",
+                "youtube_id": "5kyONWP88yc",
                 "category": "SaaS motion",
                 "accent": "#39d98a",
             },
             {
-                "title": "Spotify",
-                "description": "Brand motion concept",
-                "youtube_id": "5kyONWP88yc",
-                "category": "Brand concept",
-                "accent": "#1ed760",
+                "title": "Dopamine",
+                "description": "Recreation inspired by Rijin Ruan",
+                "youtube_id": "r649bUG8yp8",
+                "category": "Motion recreation",
+                "accent": "#8b5cf6",
             },
         ],
         faqs=[
